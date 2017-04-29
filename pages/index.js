@@ -9,7 +9,7 @@ export default class Index extends React.Component {
     return (
       <div>
         <h1>
-          Kate Lucey
+          hi
         </h1>
         <p>Welcome to your new Gatsby site.</p>
         <p>Now go build something great.</p>
