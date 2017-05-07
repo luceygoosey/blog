@@ -1,6 +1,6 @@
 import React from 'react'
 import 'css/markdown-styles.css'
-import Helmet from 'react-helmet'
+import DocumentTitle from 'react-document-title'
 import { config } from 'config'
 
 module.exports = React.createClass({
@@ -12,11 +12,11 @@ module.exports = React.createClass({
   render() {
     const post = this.props.route.page.data
     return (
-      <div className="markdown">
-        <Helmet title={`${config.siteTitle} | ${post.title}`} />
-        <h1>{post.title}</h1>
-        <div dangerouslySetInnerHTML={{ __html: post.body }} />
-      </div>
+      <DocumentTitle title={`${config.siteTitle}`}>
+        <div className="markdown">
+          <div dangerouslySetInnerHTML={{ __html: post.body }} />
+        </div>
+      </DocumentTitle>
     )
   },
 })

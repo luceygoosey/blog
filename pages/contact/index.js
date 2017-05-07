@@ -7,12 +7,7 @@ export default class Index extends React.Component {
   render() {
     return (
       <div>
-        <h1>
-          hi
-        </h1>
-        <p>Welcome to your new Gatsby site.</p>
-        <p>Now go build something great.</p>
-        <Link to={prefixLink('/page-2/')}>Go to page 2</Link>
+        <h1>Contact</h1>
       </div>
     )
   }

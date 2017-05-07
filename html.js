@@ -1,51 +1,39 @@
 import React from 'react'
-import Helmet from 'react-helmet'
-
 import { prefixLink } from 'gatsby-helpers'
-import { TypographyStyle } from 'react-typography'
-import typography from './utils/typography'
+import DocumentTitle from 'react-document-title';
 
 const BUILD_TIME = new Date().getTime()
 
 module.exports = React.createClass({
-  propTypes() {
+  getDefaultProps: function() {
     return {
-      body: React.PropTypes.string,
-    }
+      body: ""
+    };
   },
-  render() {
-    const head = Helmet.rewind()
+  render: function() {
+    var title
+    title = DocumentTitle.rewind();
+    if (this.props.title) {
+      title = this.props.title;
+    }
+    if (this.props.img) {
+      img = this.props.img;
+    }
 
     let css
     if (process.env.NODE_ENV === 'production') {
-      css = (
-        <style
-          dangerouslySetInnerHTML={{
-            __html: require('!raw!./public/styles.css'),
-          }}
-        />
-      )
+      css = <style dangerouslySetInnerHTML={{ __html: require('!raw!./public/style.css') }} />
     }
-
     return (
       <html lang="en">
         <head>
           <meta charSet="utf-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
-          />
-          {head.title.toComponent()}
-          {head.meta.toComponent()}
-          <TypographyStyle typography={typography} />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
           {css}
         </head>
         <body>
-          <div
-            id="react-mount"
-            dangerouslySetInnerHTML={{ __html: this.props.body }}
-          />
+          <div id="react-mount" dangerouslySetInnerHTML={{ __html: this.props.body }}/>
           <script src={prefixLink(`/bundle.js?t=${BUILD_TIME}`)} />
         </body>
       </html>
